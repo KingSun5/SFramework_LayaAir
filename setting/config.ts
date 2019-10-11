@@ -1,11 +1,11 @@
 import Browser = laya.utils.Browser;
 import { enumDimension, enumScaleType, enumJsonDefine, enumSoundName } from './enum';
 import { Singleton } from '../core/singleton';
+import { MainScene } from '../../client/scene/main-scene';
 import { ResGroup } from '../manager/res/res-group';
+import { LoadingView } from '../../client/view/layer-view/loading-view';
 import { JsonTemplate } from '../manager/json/json-template';
 import { SoundTemplate } from '../manager/sound/sound-template';
-import { MainScene } from '../../../client/scene/main-scene';
-import { LoadingView } from '../../../client/view/layer-view/loading-view';
  /**
  * @author Sun
  * @time 2019-08-09 14:01

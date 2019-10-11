@@ -6,6 +6,7 @@ import { enumDimension, enumAlige, enumScreenModel, enumScaleType } from '../set
 import Browser = Laya.Browser;
 import { ResManager } from '../manager/res/res-manager';
 import { EventFunc } from '../manager/event/event-data';
+import { LoadingView } from '../../client/view/layer-view/loading-view';
 import { DataManager } from '../manager/data/data-manager';
 import { EventManager } from '../manager/event/event-manager';
 import { JsonManager } from '../manager/json/json-manager';
