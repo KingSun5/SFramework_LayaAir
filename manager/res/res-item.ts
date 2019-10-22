@@ -7,12 +7,29 @@
  *
  */
 export class ResItem {
-    public url: string;
-    public type: string;
-    public isKeepMemory = false;
+    private url: string;
+    private type: string;
+    private isKeepMemory = false;
 
-    public get fullUrl() {
+    constructor(url,type,iskeepMemory)
+    {
+        this.url = url;
+        this.type = type;
+        this.isKeepMemory = iskeepMemory;
+    }
+
+    public get Url() {
         return this.url
+    }
+
+    public get Type()
+    {
+        return this.type
+    }
+
+    public get IsKeepMemory()
+    {
+        return this.isKeepMemory
     }
 }
 

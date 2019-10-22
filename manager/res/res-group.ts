@@ -28,13 +28,10 @@ export class ResGroup {
     public add(url: string, type: string, isKeepMemory = false) {
 
         let index = this.needLoad.findIndex((value: ResItem, index: number, obj: Array<ResItem>) => {
-            return value.url == url
+            return value.Url == url
         });
         if (index == -1) {
-            let info = new ResItem();
-            info.isKeepMemory = isKeepMemory;
-            info.url = url;
-            info.type = type;
+            let info = new ResItem(url,type,isKeepMemory);
             this.needLoad.push(info);
         }
         return this

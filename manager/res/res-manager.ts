@@ -56,6 +56,36 @@ export class ResManager extends EventNode implements IManager {
     }
 
     /**
+     * 加载单个资源
+     * @param resItem 资源信息
+     * @param progressFuc 加载进度回调
+     * @param completeFuc 加载完成回调
+     */
+    public loadRes(resItem:ResItem,progressFuc:EventFunc,completeFuc:EventFunc) {
+
+
+        Laya.loader.load(resItem.Url, Handler.create(this, (success: boolean) => {
+
+            if (success) {
+                //完成回调
+                if(completeFuc!=null) completeFuc.invoke();
+                //标记资源
+                if (!this.m_dictResItem.has(resItem.Url)) {
+                    this.m_dictResItem.set(resItem.Url, resItem);
+                }
+            } else {
+                Log.error("Load Resource Error：");
+                Log.debug(resItem.Url);
+            }
+
+        }), Handler.create(this, (progress: number) => {
+            //进度回调
+            if(progressFuc!=null) progressFuc.invoke(progress);
+
+        }, null, false));
+    }
+
+    /**
      * 加载资源组
      * @param loads 资源信息 
      * @param progressFuc 加载进度回调
@@ -64,7 +94,7 @@ export class ResManager extends EventNode implements IManager {
     public loadGroup(loads: ResGroup,progressFuc:EventFunc,completeFuc:EventFunc) {
         let urls: Array<any> = new Array<any>();
         loads.needLoad.forEach(element => {
-            urls.push({url: element.url, type: element.type})
+            urls.push({url: element.Url, type: element.Type})
         });
 
         Laya.loader.load(urls, Handler.create(this, (success: boolean) => {
@@ -75,8 +105,8 @@ export class ResManager extends EventNode implements IManager {
                 //标记资源
                 for (let index = 0; index < loads.needLoad.length; index++) {
                     let info = loads.needLoad[index];
-                    if (!this.m_dictResItem.has(info.url)) {
-                        this.m_dictResItem.set(info.url, info);
+                    if (!this.m_dictResItem.has(info.Url)) {
+                        this.m_dictResItem.set(info.Url, info);
                     }
                 }
             } else {
@@ -100,7 +130,7 @@ export class ResManager extends EventNode implements IManager {
     {
         let urls = new Array<string>();
         loads.needLoad.forEach(element => {
-            urls.push(element.url)
+            urls.push(element.Url)
         });
         
         for(let i=0;i<urls.length;i++){

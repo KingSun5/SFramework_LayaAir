@@ -12,6 +12,7 @@ import { EventManager } from '../manager/event/event-manager';
 import { JsonManager } from '../manager/json/json-manager';
 import { SoundManager } from '../manager/sound/sound-manager';
 import { TimerManager } from '../manager/timer/timer-manager';
+import {GameSetting} from "../../client/setting/gameSetting";
 /**
  * @author Sun
  * @time 2019-08-11 18:08
@@ -42,8 +43,8 @@ export class Engine{
      */
     public run(): void {
         Log.info("::: Game Engine Run :::");
-
         if (ConfigUI.$.defaultLoadView != null && ConfigRes.$.defaultLoadRes != null) {
+            GameSetting.$.init();
             this.engineSetup(()=>{
                 //游戏开始
                 UtilTime.start();

@@ -148,7 +148,7 @@ export class ConfigData extends Singleton{
 export class ConfigGame extends Singleton {
  
     /**默认模式信息 2D/3D */
-    public dimension: enumDimension = enumDimension.Dim3;
+    public dimension: enumDimension = enumDimension.Dim2;
     /**物理开关 */
     public physics:boolean = false;
   
