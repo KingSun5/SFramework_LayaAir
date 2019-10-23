@@ -123,6 +123,21 @@ export class ResManager extends EventNode implements IManager {
     }
 
     /**
+     * 加载预设物
+     * @param filePath
+     * @param complete
+     */
+    public loadPrefab(filePath:String,complete:EventFunc)
+    {
+        Laya.loader.load(filePath,Laya.Handler.create(this,function (pre: Laya.Prefab) {
+            var playPre:Laya.Prefab = new Laya.Prefab();
+            playPre.json = pre;
+            if (complete) complete.invoke(playPre);
+        }));
+    }
+
+
+    /**
      * 释放资源组
      * @param loads 资源组 
      */
