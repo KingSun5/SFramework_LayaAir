@@ -132,7 +132,8 @@ export class ResManager extends EventNode implements IManager {
         Laya.loader.load(filePath,Laya.Handler.create(this,function (pre: Laya.Prefab) {
             var playPre:Laya.Prefab = new Laya.Prefab();
             playPre.json = pre;
-            if (complete) complete.invoke(playPre);
+            let cell = Laya.Pool.getItemByCreateFun("Cell", playPre.create, playPre);
+            if (complete) complete.invoke(cell);
         }));
     }
 

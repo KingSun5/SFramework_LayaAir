@@ -43,9 +43,9 @@ export class ConfigUI extends Singleton {
 export class ConfigRes extends Singleton{
 
     /**默认Loading页面的资源信息 */
-    public defaultLoadRes: ResGroup = null;
+    public defaultLoadRes: ResGroup = new ResGroup();
     /**默认的基础页面资源信息 */
-    public defaultMainRes:ResGroup = null;
+    public defaultMainRes:ResGroup = new ResGroup();
 
     private static instance: ConfigRes = null;
     public static get $():ConfigRes {
@@ -55,21 +55,6 @@ export class ConfigRes extends Singleton{
 
     constructor(){
         super();
-
-        //手动配置loading资源
-        this.defaultLoadRes = new ResGroup();
-        this.defaultLoadRes
-        .add("res/loading/img_loading_bg.png",Laya.Loader.IMAGE)
-        .add("res/loading/progress_loading.png",Laya.Loader.IMAGE)
-        .add("res/loading/img_8r.png",Laya.Loader.IMAGE);
-        //手动配置主页资源
-        this.defaultMainRes = new ResGroup();
-        this.defaultMainRes
-        .add("res/atlas/res/main/effect.atlas", Laya.Loader.ATLAS)
-        .add("res/atlas/res/com.atlas", Laya.Loader.ATLAS)
-        .add("res/com/img_lottery_border.png", Laya.Loader.IMAGE)
-        .add("res/com/img_lottery_content.png", Laya.Loader.IMAGE)
-        .add("res/main/bg/bg.png", Laya.Loader.IMAGE)
         //加载Json配置文件
         ConfigData.$.jsonTemplateList.forEach(item=>{
             this.defaultMainRes
@@ -121,20 +106,11 @@ export class ConfigSound extends Singleton {
 export class ConfigData extends Singleton{
 
     /**json配置表信息 */
-    public jsonTemplateList:Array<JsonTemplate>;
-
+    public jsonTemplateList:Array<JsonTemplate> = new Array<JsonTemplate>();
     constructor()
     {
         super();
-        this.jsonTemplateList = new Array<JsonTemplate>();
-        this.jsonTemplateList = [
-            new JsonTemplate("res/data/InviteData.json", enumJsonDefine.invite),
-            new JsonTemplate("res/data/LevelData.json", enumJsonDefine.level),
-            new JsonTemplate("res/data/OfflineData.json", enumJsonDefine.offline),
-            new JsonTemplate("res/data/TurntableData.json", enumJsonDefine.lottery),
-        ];
     }
-
     private static instance: ConfigData = null;
     public static get $():ConfigData {
         if (!this.instance) this.instance = new ConfigData();
