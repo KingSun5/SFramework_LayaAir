@@ -89,14 +89,13 @@ export module CustomDialog{
          * @param closeOutside 是否点击空白处关闭
          */
         popupDialog(popupData:PopupData = null): void {
-            this.popup(false,false);
-
+            // this.popup(false,false);
             if(popupData==null) {
                 popupData = this.popupData;
             }else{
                 this.popupData = popupData;
             }
-            // Laya.stage.addChild(this);
+            Laya.stage.addChild(this);
             this.popupInit();
             if (popupData.isMask && this.maskLayer == null) {
                 this.crateMaskLayer();
@@ -123,7 +122,6 @@ export module CustomDialog{
                 scaleY: 1
             }, time, Ease.backOut, Handler.create(this, cb, [this]), 0, false, false);
         }
-
 
         close(): void {
             this.removeSelf();
