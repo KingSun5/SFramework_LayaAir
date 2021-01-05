@@ -96,7 +96,7 @@ export module CustomDialog{
             }else{
                 this.popupData = popupData;
             }
-            Laya.stage.addChild(this);
+            // Laya.stage.addChild(this);
             this.popupInit();
             if (popupData.isMask && this.maskLayer == null) {
                 this.crateMaskLayer();
