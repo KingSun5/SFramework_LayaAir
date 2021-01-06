@@ -43,8 +43,8 @@ export class Engine{
      */
     public run(): void {
         Log.info("::: Game Engine Run :::");
+        GameSetting.$.init();
         if (ConfigUI.$.defaultLoadView != null && ConfigRes.$.defaultLoadRes != null) {
-            GameSetting.$.init();
             this.engineSetup(()=>{
                 //游戏开始
                 UtilTime.start();
